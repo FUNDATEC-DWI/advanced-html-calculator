@@ -72,7 +72,13 @@
           <button class="btn btn-secondary" id="btn0">0</button>
         </div>
         <div class="col-sm-12 col-md-1">
-          <button class="btn btn-primary" id="btnIgual">=</button>
+          <button
+            class="btn btn-primary"
+            id="btnIgual"
+            onclick="calcularResultado()"
+          >
+            =
+          </button>
         </div>
         <div class="col-sm-12 col-md-1">
           <button class="btn btn-secondary" id="btnDivisao">/</button>
@@ -171,25 +177,43 @@
         .getElementById("btnMenos")
         .addEventListener("click", clicouEmOperador);
 
-      document
-        .getElementById("btnIgual")
-        .addEventListener("click", function () {
-          let resultadoCalculo = "";
-          let primeiroOperando = parseFloat(numero1);
-          let segundoOperando = parseFloat(numero2);
+      // document
+      //   .getElementById("btnIgual")
+      //   .addEventListener("click", function () {
+      //     let resultadoCalculo = "";
+      //     let primeiroOperando = parseFloat(numero1);
+      //     let segundoOperando = parseFloat(numero2);
 
-          if (operador === "+") {
-            resultadoCalculo = somar(primeiroOperando, segundoOperando);
-          } else if (operador === "-") {
-            resultadoCalculo = subtrair(primeiroOperando, segundoOperando);
-          } else if (operador === "*") {
-            resultadoCalculo = multiplicar(primeiroOperando, segundoOperando);
-          } else if (operador === "/") {
-            resultadoCalculo = dividir(primeiroOperando, segundoOperando);
-          }
+      //     if (operador === "+") {
+      //       resultadoCalculo = somar(primeiroOperando, segundoOperando);
+      //     } else if (operador === "-") {
+      //       resultadoCalculo = subtrair(primeiroOperando, segundoOperando);
+      //     } else if (operador === "*") {
+      //       resultadoCalculo = multiplicar(primeiroOperando, segundoOperando);
+      //     } else if (operador === "/") {
+      //       resultadoCalculo = dividir(primeiroOperando, segundoOperando);
+      //     }
 
-          document.getElementById("exibidor").value = resultadoCalculo;
-        });
+      //     document.getElementById("exibidor").value = resultadoCalculo;
+      //   });
+
+      function calcularResultado() {
+        let resultadoCalculo = "";
+        let primeiroOperando = parseFloat(numero1);
+        let segundoOperando = parseFloat(numero2);
+
+        if (operador === "+") {
+          resultadoCalculo = somar(primeiroOperando, segundoOperando);
+        } else if (operador === "-") {
+          resultadoCalculo = subtrair(primeiroOperando, segundoOperando);
+        } else if (operador === "*") {
+          resultadoCalculo = multiplicar(primeiroOperando, segundoOperando);
+        } else if (operador === "/") {
+          resultadoCalculo = dividir(primeiroOperando, segundoOperando);
+        }
+
+        document.getElementById("exibidor").value = resultadoCalculo;
+      }
 
       function somar(num1, num2) {
         return num1 + num2;

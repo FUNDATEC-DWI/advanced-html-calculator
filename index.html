@@ -65,7 +65,9 @@
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-sm-12 col-md-1"></div>
+        <div class="col-sm-12 col-md-1">
+          <button class="btn btn-secondary" id="btnVirgula">.</button>
+        </div>
         <div class="col-sm-12 col-md-1">
           <button class="btn btn-secondary" id="btn0">0</button>
         </div>
@@ -76,13 +78,18 @@
           <button class="btn btn-secondary" id="btnDivisao">/</button>
         </div>
       </div>
+      <div class="row mt-3">
+        <div class="col-md-1">
+          <button class="btn btn-danger" id="btnAC">AC</button>
+        </div>
+      </div>
     </div>
     <script>
       var numero1 = "";
       var operador;
       var numero2 = "";
 
-      function clicouEmNumero(ev) {
+      function clicouEmNumeroOuVirgula(ev) {
         if (operador == undefined) {
           numero1 = numero1 + ev.target.innerText;
         } else {
@@ -112,16 +119,45 @@
         document.getElementById("exibidor").value = textoDoCalculo;
       }
 
-      document.getElementById("btn1").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn2").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn3").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn4").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn5").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn6").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn7").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn8").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn9").addEventListener("click", clicouEmNumero);
-      document.getElementById("btn0").addEventListener("click", clicouEmNumero);
+      document.getElementById("btnAC").addEventListener("click", function () {
+        numero1 = "";
+        operador = undefined;
+        numero2 = "";
+        exibeCalculo();
+      });
+      document
+        .getElementById("btn1")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn2")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn3")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn4")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn5")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn6")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn7")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn8")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn9")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btn0")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
+      document
+        .getElementById("btnVirgula")
+        .addEventListener("click", clicouEmNumeroOuVirgula);
       document
         .getElementById("btnMais")
         .addEventListener("click", clicouEmOperador);
@@ -134,28 +170,42 @@
       document
         .getElementById("btnMenos")
         .addEventListener("click", clicouEmOperador);
-      function soma(num1, num2) {
+
+      document
+        .getElementById("btnIgual")
+        .addEventListener("click", function () {
+          let resultadoCalculo = "";
+          let primeiroOperando = parseFloat(numero1);
+          let segundoOperando = parseFloat(numero2);
+
+          if (operador === "+") {
+            resultadoCalculo = somar(primeiroOperando, segundoOperando);
+          } else if (operador === "-") {
+            resultadoCalculo = subtrair(primeiroOperando, segundoOperando);
+          } else if (operador === "*") {
+            resultadoCalculo = multiplicar(primeiroOperando, segundoOperando);
+          } else if (operador === "/") {
+            resultadoCalculo = dividir(primeiroOperando, segundoOperando);
+          }
+
+          document.getElementById("exibidor").value = resultadoCalculo;
+        });
+
+      function somar(num1, num2) {
         return num1 + num2;
       }
 
-      function subtracao(num1, num2) {
+      function subtrair(num1, num2) {
         return num1 - num2;
       }
 
-      function divisao(num1, num2) {
+      function dividir(num1, num2) {
         return num1 / num2;
       }
 
       function multiplicar(num1, num2) {
         return num1 * num2;
       }
-
-      //   document.getElementById("num1").value;
-      //   document.getElementById("num2").value;
-      //   document.getElementById("soma").value;
-      //   document.getElementById("subtracao").value;
-      //   document.getElementById("divisao").value;
-      //   document.getElementById("multiplicacao").value;
     </script>
   </body>
 </html>
